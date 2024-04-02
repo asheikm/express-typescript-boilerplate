@@ -6,8 +6,8 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run: yarn add sqlite3@5.0.0
       - run: yarn add bcrypt
-      - run: npm ls -g node-gyp &&  yarn add sqlite3
       - run: yarn install
       - run: yarn test
 
