@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-
 jobs:
   build_and_test:
     executor: node/default
@@ -10,20 +9,18 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command:  yarn install
+          command: yarn install
           name: install components
       - run:
-          command: yarn build 
+          command: yarn build
           name: Build app
-       - run:
+      - run:
           command: yarn start test
           name: Run tests
       - persist_to_workspace:
           root: ~/project
           paths:
             - .
-
-
 workflows:
   test_my_app:
     jobs:
