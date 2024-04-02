@@ -9,6 +9,9 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
+          command: yarn add bcrypt-nodejs && yarn remove bcrypt
+          name: fix bcrypt issue
+      - run:
           command: yarn install
           name: install components
       - run:
