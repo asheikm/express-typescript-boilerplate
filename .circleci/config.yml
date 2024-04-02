@@ -6,10 +6,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - run: yarn add bcrypt
-      - run: yarn config set python /usr/bin/python3 && yarn add sqlite3 --ignore-engines
-      - run: yarn install
-      - run: yarn test
+      - run: yarn run setup
 
 workflows:
   version: 2
