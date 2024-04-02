@@ -1,36 +1,16 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.0.2
-
 jobs:
-  build_and_test:
-    executor: node/default
+  build:
+    docker:
+      - image: circleci/node:14
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          name: Fix bcrypt issue
-          command: yarn add bcrypt-nodejs && yarn remove bcrypt
-      - run:
-          name: Install components
-          command: yarn install
-      - run:
-          name: Build app
-          command: yarn build
-      - run:
-          name: Run tests
-          command: yarn test
-
-      # Persist the project directory to the workspace
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
+      - run: yarn install
+      - run: yarn test
 
 workflows:
   version: 2
-  test_my_app:
+  build_and_deploy:
     jobs:
-      - build_and_test
+      - build
