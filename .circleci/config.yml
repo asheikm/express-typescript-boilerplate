@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - run: yarn add bcrypt-nodejs && yarn remove bcrypt
       - run: yarn install
       - run: yarn test
 
